@@ -1,0 +1,26 @@
+version: '3.8'
+
+#volumes:
+#  apmosys-data:
+networks:
+  apmosys-network:
+    driver: bridge
+
+
+services:
+  ubuntu-gui-ldxe:
+    image: ubuntu-gui-rafik_2
+    ports:
+       - '5901:5901'
+       - '5522:22'
+    restart: unless-stopped
+    shm_size: 512MB
+    privileged: true
+    environment:
+      - VNC_PW=Welcome@2023
+      - TZ='Asia/Kolkata'
+    volumes:
+      - ./data:/home/apmosys/data:Z
+    networks:
+      apmosys-network:
+
